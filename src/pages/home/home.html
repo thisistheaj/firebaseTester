@@ -3,18 +3,33 @@
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
   <button ion-button block (click)="anonLogin()">
     Log In
   </button>
+  <ion-list>
+    <ion-item>
+      <ion-label>ID</ion-label>
+      <ion-input [(ngModel)]="obj.id" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input [(ngModel)]="obj.name" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input [(ngModel)]="obj.email" type="text"></ion-input>
+    </ion-item>
+    <button ion-button block (click)="pushThing(obj.id)" color="secondary">
+      Push: (List)
+    </button>
+    <button ion-button block (click)="setThing(obj.id)" color="secondary">
+      Set: (Object)
+    </button>
+    <ion-item *ngFor="let fbItem of fbList | async">
+      <h4>{{ fbItem.name }}</h4>
+      <p>{{ fbItem.email }}</p>
+      <button ion-button (click)="printObj(fbItem)" item-right="">Print</button>
+    </ion-item>
+  </ion-list>
 </ion-content>
